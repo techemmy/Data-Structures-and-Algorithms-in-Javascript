@@ -6,10 +6,10 @@ class SinglyLinkedList {
 
   prepend(item) {
     const newNode = { item };
+    this.length++;
 
     if (!this.head) {
       this.head = this.tail = newNode;
-      this.length++;
       return;
     }
 
@@ -17,7 +17,6 @@ class SinglyLinkedList {
     newNode.next = currNode;
 
     this.head = newNode;
-    this.length++;
   }
 
   insertAt(item, idx) {
@@ -44,7 +43,7 @@ class SinglyLinkedList {
           this.head = currNode.next;
         }
         newNode.next = currNode;
-        prevNode.next = newNode;
+        if (prevNode) prevNode.next = newNode;
 
         this.length++;
         return newNode.item;
