@@ -5,7 +5,7 @@ class SinglyLinkedList {
   }
 
   prepend(item) {
-    const newNode = { item };
+    const newNode = { value: item };
     this.length++;
 
     if (!this.head) {
@@ -23,7 +23,7 @@ class SinglyLinkedList {
     let currNode = this.head,
       nextNode = this.head.next,
       prevNode;
-    const newNode = { item };
+    const newNode = { value: item };
 
     if (idx === 0) {
       this.prepend(item);
@@ -46,7 +46,7 @@ class SinglyLinkedList {
         if (prevNode) prevNode.next = newNode;
 
         this.length++;
-        return newNode.item;
+        return newNode.value;
       }
 
       prevNode = currNode;
@@ -56,7 +56,7 @@ class SinglyLinkedList {
   }
 
   append(item) {
-    const newNode = { item };
+    const newNode = { value: item };
 
     if (!this.head) {
       this.head = this.tail = newNode;
@@ -74,14 +74,14 @@ class SinglyLinkedList {
       nextNode = this.head.next,
       prevNode;
     for (let i = 0; i < this.length; i++) {
-      if (currNode.item === item) {
+      if (currNode.value === item) {
         if (prevNode) {
           prevNode.next = currNode.next;
         } else {
           this.head = currNode.next;
         }
         this.length--;
-        return currNode.item;
+        return currNode.value;
       }
 
       prevNode = currNode;
@@ -91,16 +91,13 @@ class SinglyLinkedList {
   }
 
   get(idx) {
-    let currNode = this.head,
-      nextNode = this.head.next;
-    for (let i = 0; i < this.length; i++) {
-      if (idx === i) {
-        return currNode.item;
-      }
+    let currNode = this.head;
 
-      currNode = nextNode;
-      nextNode = currNode.next;
+    for (let i = 0; i < idx && currNode; ++i) {
+      currNode = currNode.next;
     }
+
+    return currNode?.value;
   }
 
   removeAt(idx) {
@@ -116,7 +113,7 @@ class SinglyLinkedList {
         }
 
         this.length--;
-        return currNode.item;
+        return currNode.value;
       }
 
       prevNode = currNode;
