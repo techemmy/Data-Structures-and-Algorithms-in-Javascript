@@ -1,3 +1,6 @@
+// Breadth First Search does not preserve shape.
+// Depth First Search does
+
 // Binary Tree Breadth-First Search
 class Queue {
     constructor() {
